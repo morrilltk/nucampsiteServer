@@ -53,7 +53,9 @@ app.use(express.urlencoded({ extended: false }));
 //app.use(cookieParser("12345-67890-09876-54321"));
 app.use(passport.initialize());
 
-app.use("/", indexRouter);
+app.use("/", function (req, res, next) {
+  res.sendFile(__dirname + "/public/index.html");
+});
 app.use("/users", usersRouter);
 
 app.use("/campsites", campsiteRouter);
